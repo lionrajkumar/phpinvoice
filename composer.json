@@ -18,6 +18,6 @@
   ],
   "require": {
     "php": ">=5.4.0",
-    "dompdf/dompdf": "^0.7.0"
+    "dompdf/dompdf": "^0.8.3"
   }
 }
