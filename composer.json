@@ -1,0 +1,23 @@
+{
+  "name": "lionrajkumar/phpinvoice",
+  "description": "PHP scripts for making invoices with MySql Database.\nCreated invoices will be shared online with shared links. By using a password or a secret key invoice will be displayed.",
+  "keywords": [
+    "invoice",
+    "pdf",
+    "invoice.pdf",
+    "dompdf"
+  ],
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Rajkumar",
+      "email": "lionrajkumar@gmail.com",
+      "homepage": "http://lionrajkumar.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "dompdf/dompdf": "^0.7.0"
+  }
+}
