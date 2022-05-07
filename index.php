@@ -1,24 +1,34 @@
 <?php
-require 'vendor/autoload.php';
-date_default_timezone_set("Asia/Kolkata");
+include "config.php";
 
-use Dompdf\Dompdf;
-use Dompdf\Options;
+if(isset($_SERVER['QUERY_STRING'])){
+    $URL_QUERIES = array();
+    parse_str(@$_SERVER['QUERY_STRING'], $URL_QUERIES);
+}
 
-$options = new Options();
-$options->set('isRemoteEnabled', TRUE);
-$options->set('tempDir', '/tmp');
-$options->set('chroot', __DIR__);
+if(isset($_SERVER['PATH_INFO'])){
+    $request = $_SERVER["PATH_INFO"];
+    $parsed = array_values(array_filter(explode('/' , $request)));
+    $PAGE = (count($parsed)==0?HOME_PAGE:$parsed[0]);
+}
 
-$dompdf = new Dompdf($options);
-/*$html = file_get_contents('invoice.php', false);
-$replacedSting=str_replace("[[name]]",$user->name,$html);
-//echo $replacedSting;
-$dompdf->loadHtml($replacedSting);*/
-ob_start();
-require __DIR__ . "/invoice.php";
-$dompdf->loadHtml(ob_get_clean());
-$dompdf->setPaper('A4', 'portrait');
-$dompdf->render();
+function baseUrl(){
+    $uri = ((!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS']))?'https://':'http://');
+    $uri .= $_SERVER['HTTP_HOST'];
+    return $uri;
+}
 
-$dompdf->stream("Ttech-Invoice_".date("YZG"));
+function currentUrl(){
+    return baseUrl().$_SERVER["REQUEST_URI"];
+}
+
+function loadFile($dir,$page){
+    if(file_exists($dir . "/views/".$page.".php") && $page!='') {
+        require $dir . "/views/" . $page . ".php";
+    }else{
+        require $dir . "/error/404.php";
+    }
+}
+
+//echo "<pre>";print_r($_SERVER);
+require __DIR__ . "/resources/template.php";

@@ -48,14 +48,14 @@
     <div >
         <div>
             <div>
-                <img src="images/logo.png" alt="logo" style="height:100px;width:auto;float: left; margin-bottom: 15px;">
+                <img src="img/logo.png" alt="logo" style="height:100px;width:auto;float: left; margin-bottom: 15px;">
                 <h2 style="float:right">Invoice</h2>
             </div>
             <hr style="clear: both;">
             <div style="float:left">
                 <address>
                     <strong>Billed To:</strong><br>
-                    Fullname<br><br>
+                    <?php echo $user->name;?><br><br>
                     Company name<br>
                     Address line1,<br>
                     City State, zip<br>
@@ -187,4 +187,15 @@
     </div>
     <i style="float: right; font-size: 10px;">Printed At: <?php echo date("M d, Y h:i:s A T");?></i>
 </div>
+<?php
+if(@$user->print) {
+    if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS'])) {
+        $uri = 'https://';
+    } else {
+        $uri = 'http://';
+    }
+    $uri .= $_SERVER['HTTP_HOST'];
+    echo "<a href='".$uri."/download.php'>Download</a>";
+}
+?>
 </body></html>
