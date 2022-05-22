@@ -5,6 +5,9 @@ date_default_timezone_set("Asia/Kolkata");
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
+$env = new \lionrajkumar\DotEnv(__DIR__ . "/.env");
+$env->load();
+
 $user = new stdClass();
 $user->name="rajkumar";
 

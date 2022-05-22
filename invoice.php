@@ -183,7 +183,9 @@
     </div>
     <div style="clear: both; text-align: center;font-size: 14px;">
         <p>Notice something wrong? <a href="mailto:email@gmail.com" style="color: #0867ec">Contact our support team</a> and we will be happy to help.</p>
-        <p>XXX Softwares <br>Address line1 <br>PhNo <a href="mailto:email@gmail.com" style="color: #0867ec">email@gmail.com</a></p>
+        <p><?php echo getenv("FREELANCER_NAME");?><br><?php echo getenv("FREELANCER_ADDRESS_LINE");?>,
+            <?php echo getenv("FREELANCER_ADDRESS_LINE2");?><br>
+            <?php echo getenv("FREELANCER_PHNO");?> / <a href="mailto:<?php echo getenv("FREELANCER_EMAIL");?>" style="color: #0867ec"><?php echo getenv("FREELANCER_EMAIL");?></a></p>
     </div>
     <i style="float: right; font-size: 10px;">Printed At: <?php echo date("M d, Y h:i:s A T");?></i>
 </div>
@@ -195,7 +197,7 @@ if(@$user->print) {
         $uri = 'http://';
     }
     $uri .= $_SERVER['HTTP_HOST'];
-    echo "<a href='".$uri."/download.php'>Download</a>";
+    echo "<a href='".$uri."/download.php' target='_blank' class='btn btn-default'><i class='fas fa-print'></i> Download</a>";
 }
 ?>
 </body></html>
