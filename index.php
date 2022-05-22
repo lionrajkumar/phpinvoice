@@ -1,5 +1,7 @@
 <?php
 include "config.php";
+require 'vendor/autoload.php';
+date_default_timezone_set("Asia/Kolkata");
 
 if(isset($_SERVER['QUERY_STRING'])){
     $URL_QUERIES = array();
